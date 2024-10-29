@@ -1,0 +1,55 @@
+#include <stdio.h>
+
+int amount = 0;
+
+void menu();
+void deposit();
+void withdraw();
+
+int main() {
+    printf("welcome to atm\n");
+    menu();
+    return 0;
+}
+
+void menu() {
+    int choice;
+    printf("1. Deposit\n");
+    printf("2. Withdraw\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+            deposit();
+            break;
+        case 2:
+            withdraw();
+            break;
+        default:
+            printf("Invalid choice\n");
+    }
+
+    menu(); 
+
+void deposit() {
+    int amount_deposition;
+    printf("Enter the amount to deposit: ");
+    scanf("%d", &amount_deposition);
+    amount += amount_deposition;
+    printf("Deposited: %d\n",amount_deposition);
+    printf("Current balance: %d\n", amount);
+}
+
+void withdraw() {
+    int amount_withdrawn;
+    printf("Enter the amount to withdraw: ");
+    scanf("%d", &amount_withdrawn);
+    if (amount_withdrawn <= amount) {
+        amount -= amount_withdrawn;
+        printf("Withdrawn: %d\n", amount_withdrawn);
+        printf("Current balance: %d\n", amount);
+    } else {
+        printf("Insufficient balance\n");
+    }
+}
